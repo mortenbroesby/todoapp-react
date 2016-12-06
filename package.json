@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --profile --colors"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortenbroesby/todoapp-react.git"
+  },
   "author": "Morten Broesby-Olsen <mortenbroesby@gmail.com>",
   "license": "ISC",
   "devDependencies": {

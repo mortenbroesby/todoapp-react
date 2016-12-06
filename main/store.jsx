@@ -4,7 +4,11 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 
 const ReduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const configureStore = () => {
-  const store = createStore(todoApp, undefined,  autoRehydrate(), ReduxDevTools)
+
+  // Switch to Redux DevTools
+  // const store = createStore(todoApp, undefined, ReduxDevTools)
+
+  const store = createStore(todoApp, undefined, autoRehydrate())
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
