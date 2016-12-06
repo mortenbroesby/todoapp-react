@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import styles from './index.css'
-import { connect } from 'redux'
+import { connect } from 'react-redux'
 
 const Todo = ({ onClick, completed, text }) => (
   <li onClick={onClick} >
@@ -67,41 +67,30 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick: (id) => {
+      dispatch(toggleTodo(id))
+    }
+  }
+}
+
 let nextTodoId = 0
-export const TodoApp = ({ todos, visibilityFilter }) => (
+const TodoApp = ({ todos, visibilityFilter }) => (
   <div>
     <strong>Todos</strong>
-    <TodoList
-      todos={
-        getVisibleTodos(
-          todos,
-          visibilityFilter
-        )
-      }
-      onTodoClick={id =>
-        store.dispatch({
-          type: 'TOGGLE_TODO',
-          id
-        })
-      }
-    />
-    <AddTodo
-      onAddClick={text =>
-        store.dispatch({
-          type: 'ADD_TODO',
-          id: nextTodoId++,
-          text
-        })
-      }
-    />
-    <Footer
-      visibilityFilter={visibilityFilter}
-      onFilterClick={filter =>
-        store.dispatch({
-          type: 'SET_VISIBILITY_FILTER',
-          filter
-        })
-      }
-    />
   </div>
 )
+
+const TodoMVC = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoApp)
+
+export default TodoMVC
