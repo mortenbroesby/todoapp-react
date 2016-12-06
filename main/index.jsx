@@ -3,12 +3,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import TodoMVC from './todomvc.jsx'
 
-const initialState = {
-  todos: [{ id: 123, text: 'hello', completed: false }]
-}
-
 import configureStore from './store';
-const store = configureStore(initialState)
+const store = configureStore()
 
 render(
   <Provider store={store}>

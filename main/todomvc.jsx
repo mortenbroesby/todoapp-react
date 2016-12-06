@@ -11,11 +11,7 @@ const Todo = ({ onClick, completed, text }) => (
   </li>
 )
 
-// {todos.map(todo =>
-//   <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
-// )}
 const TodoList = ({ todos, onTodoClick }) => {
-  if (!todos) return null
   return (
     <div>
       {todos.map(todo =>
