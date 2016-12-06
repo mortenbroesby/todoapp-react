@@ -11,7 +11,11 @@ const Todo = ({ onClick, completed, text }) => (
   </li>
 )
 
+// {todos.map(todo =>
+//   <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+// )}
 const TodoList = ({ todos, onTodoClick }) => {
+  if (!todos) return null
   return (
     <div>
       {todos.map(todo =>
@@ -57,13 +61,9 @@ const getVisibleTodos = (todos, filter) => {
     case 'SHOW_ALL':
       return todos
     case 'SHOW_COMPLETED':
-      return todos.filter(
-        t => t.completed
-      )
+      return todos.filter(todo => todo.completed)
     case 'SHOW_ACTIVE':
-      return todos.filter(
-        t => !t.completed
-      )
+      return todos.filter(todo => !todo.completed)
   }
 }
 
@@ -76,15 +76,28 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTodoClick: (id) => {
-      dispatch(toggleTodo(id))
+      dispatch({ type: 'TOGGLE_TODO', id })
+    },
+    onAddClick: (text) => {
+      dispatch({ type: 'ADD_TODO', text })
+    },
+    onFilterClick: (filter) => {
+      dispatch({ type: 'SET_VISIBILITY_FILTER', filter })
     }
   }
 }
 
-let nextTodoId = 0
-const TodoApp = ({ todos, visibilityFilter }) => (
+const TodoApp = ({ todos, visibilityFilter, onAddClick, onFilterClick }) => (
   <div>
     <strong>Todos</strong>
+    <TodoList
+      todos={todos}
+      onTodoClick={id => onTodoClick(id)} />
+    <AddTodo onAddClick={text => onAddClick(text)} />
+    <Footer
+      visibilityFilter={visibilityFilter}
+      onFilterClick={filter => onFilterClick(filter)}
+    />
   </div>
 )
 
