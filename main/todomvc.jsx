@@ -87,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const TodoApp = ({ todos, visibilityFilter, onAddClick, onFilterClick }) => (
+const TodoApp = ({ todos, visibilityFilter, onTodoClick, onAddClick, onFilterClick }) => (
   <div>
     <strong>Todos</strong>
     <TodoList
