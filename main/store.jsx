@@ -1,9 +1,10 @@
 import { createStore } from 'redux'
 import { todoApp } from './reducers.jsx'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 const ReduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-const configureStore = (initialState) => {
-  const store = createStore(todoApp, initialState, ReduxDevTools)
+const configureStore = () => {
+  const store = createStore(todoApp, undefined,  autoRehydrate(), ReduxDevTools)
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
@@ -11,6 +12,11 @@ const configureStore = (initialState) => {
       store.replaceReducer(nextRootReducer)
     })
   }
+
+  persistStore(store)
+
+  // Purge persistance using below:
+  // persistStore(store).purge()
 
   return store
 }
