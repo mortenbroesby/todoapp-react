@@ -1,24 +1,24 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import TodoMVC from './todomvc.jsx'
+import TodoAppConnected from './todoapp.jsx'
 
 import configureStore from './store';
 const store = configureStore()
 
 render(
   <Provider store={store}>
-    <TodoMVC/>
+    <TodoAppConnected/>
   </Provider>,
   document.querySelector("#app")
 )
 
 if (module && module.hot) {
-  module.hot.accept('./todomvc.jsx', () => {
-    const TodoMVC = require('./todomvc.jsx').default
+  module.hot.accept('./todoapp.jsx', () => {
+    const TodoAppConnected = require('./todoapp.jsx').default
     render(
       <Provider store={store}>
-        <TodoMVC/>
+        <TodoAppConnected/>
       </Provider>,
       document.querySelector("#app")
     )

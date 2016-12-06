@@ -97,9 +97,9 @@ const TodoApp = ({ todos, visibilityFilter, onTodoClick, onAddClick, onFilterCli
   </div>
 )
 
-const TodoMVC = connect(
+const TodoAppConnected = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoApp)
 
-export default TodoMVC
+export default TodoAppConnected

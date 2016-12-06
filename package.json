@@ -1,7 +1,7 @@
 {
-  "name": "todomvc-react",
+  "name": "todoapp-react",
   "version": "0.1.0",
-  "description": "TodoMVC Example done in React",
+  "description": "TodoApp Example done in React",
   "main": "main/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
